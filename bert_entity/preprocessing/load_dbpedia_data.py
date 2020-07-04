@@ -1,6 +1,7 @@
 import os
 import subprocess
 from typing import Dict
+import shutil
 
 from pipeline_job import PipelineJob
 
