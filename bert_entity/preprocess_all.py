@@ -11,8 +11,8 @@ from preprocessing.postprocess_mention_entity_counts import PostProcessMentionEn
 from pipeline_job import PipelineJob
 from preprocessing.collect_mention_entity_counts import CollectMentionEntityCounts
 from preprocessing.create_redirects import CreateRedirects
-from preprocessing.download_data import DownloadWikiDump
-from preprocessing.wikiextractor import Wikiextractor
+from preprocessing.load_dbpedia_data import DownloadWikiDump
+from preprocessing.dbpedia_extractor import Wikiextractor
 from misc import argparse_bool_type
 import configargparse as argparse
 import logging
