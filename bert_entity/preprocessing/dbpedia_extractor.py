@@ -71,9 +71,9 @@ class Wikiextractor(PipelineJob):
 
               #    print(data)
               new_file = f"db_file_{counter}.txt"
-              f = open(new_file,"w")
-              f.write( str(data) )
-              os.mv(new_file data/versions/{self.opts.data_version_name}/wikiextractor_out{new_file})
+              os.makedirs(f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{new_file}")
+              f = open(f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{new_file}","w")
+              f.write( str(data)
               f.close()
 
         self.log("WikiExtractor finished")
