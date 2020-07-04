@@ -9,7 +9,6 @@ import sys
 from collections import Counter
 from typing import Dict
 
-from WikiExtractor import main as wiki_extractor_main
 from misc import normalize_wiki_entity
 from pipeline_job import PipelineJob
 
@@ -43,7 +42,7 @@ class Wikiextractor(PipelineJob):
               data = pd.read_excel(input_file)
               data = data.to_dict(orient = 'records')
               #  print(data)
-                i=0
+              i=0
 
               #  print(data[i]['internal links'])
 
@@ -73,7 +72,7 @@ class Wikiextractor(PipelineJob):
               new_file = f"db_file_{counter}.txt"
               os.makedirs(f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{new_file}")
               f = open(f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{new_file}","w")
-              f.write( str(data)
+              f.write( str(data))
               f.close()
 
         self.log("WikiExtractor finished")
