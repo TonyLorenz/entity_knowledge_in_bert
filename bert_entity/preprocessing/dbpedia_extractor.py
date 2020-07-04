@@ -69,8 +69,7 @@ class Wikiextractor(PipelineJob):
               #    base64.b64encode(pickle.dumps(self.internal_links)).decode('utf-8')
 
               #    print(data)
-              new_file = f"db_file_{counter}.txt"
-              os.makedirs(f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{new_file}")
+              new_file = f"db_file_{counter}.txt)
               f = open(f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{new_file}","w")
               f.write( str(data))
               f.close()
