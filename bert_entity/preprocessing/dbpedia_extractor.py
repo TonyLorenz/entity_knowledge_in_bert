@@ -71,10 +71,10 @@ class Wikiextractor(PipelineJob):
 
               #    print(data)
               new_file = f"db_file_{counter}.json"
-              json = json.dumps(data)
+              j = json.dumps(data)
               os.makedirs(f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{self.opts.wiki_lang_version}")
               f = open(f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{self.opts.wiki_lang_version}/{new_file}","w")
-              f.write(json)
+              f.write(j)
               f.close()
 
         self.log("WikiExtractor finished")
