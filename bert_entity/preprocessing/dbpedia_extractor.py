@@ -51,6 +51,7 @@ class Wikiextractor(PipelineJob):
               while i<len(data):
                 internal_links_new = []
                 offset_list = []
+                data[i]['id'] = str(data[i]['id'])
                 item = data[i]['internal links'].split(', ')
                 for word in item:
                   word = word.replace('_',' ')
