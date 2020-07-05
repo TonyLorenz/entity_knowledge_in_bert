@@ -23,8 +23,10 @@ class DownloadWikiDump(PipelineJob):
 
         self.log(f"Downloading {self.opts.wiki_lang_version}")
         if self.opts.download_data_only_dummy:
+            os.mkdir(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/")
             shutil.move("/content/entity_knowledge_in_bert/bert_entity/preprocessing/dbpedia_dummy.xlsx", f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/dbpedia_dummy.xlsx")
         else:
+            os.mkdir(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/")
             shutil.move("/dbpedia_all.xlsx", f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}dbpedia_dummy.xlsx/")
 
         self.log("Download finished ")
