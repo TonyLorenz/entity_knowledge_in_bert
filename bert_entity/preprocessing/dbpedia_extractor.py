@@ -46,7 +46,9 @@ class Wikiextractor(PipelineJob):
               i=0
 
               #  print(data[i]['internal links'])
-
+              new_file = f"db_file_{counter}.json"
+              os.makedirs(f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{self.opts.wiki_lang_version}")
+              f = open(f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{self.opts.wiki_lang_version}/{new_file}","w")
 
               while i<len(data):
                 internal_links_new = []
@@ -67,15 +69,12 @@ class Wikiextractor(PipelineJob):
             #    data[i]['internal links'] = sorted(data[i]['internal links'].items())
                 data[i]['internal links'] = base64.b64encode(pickle.dumps(data[i]['internal links'])).decode('utf-8')
                 print(data[i]['internal links'])
+                json.dump(data[i], f)
+
                 i+=1
               #    base64.b64encode(pickle.dumps(self.internal_links)).decode('utf-8')
 
               #    print(data)
-              new_file = f"db_file_{counter}.json"
-              j = json.dumps(data)
-              os.makedirs(f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{self.opts.wiki_lang_version}")
-              f = open(f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{self.opts.wiki_lang_version}/{new_file}","w")
-              f.write(j)
               f.close()
 
         self.log("WikiExtractor finished")
