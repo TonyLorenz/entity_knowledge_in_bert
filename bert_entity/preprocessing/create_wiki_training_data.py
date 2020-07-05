@@ -75,7 +75,7 @@ class CreateWikiTrainingData(PipelineJob):
         workers = list()
 
         list_dir_string = (
-            f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{self.opts.wiki_lang_version}/*/*/wiki_*"
+            f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{self.opts.wiki_lang_version}/*"
         )
 
         #
