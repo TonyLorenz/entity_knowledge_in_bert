@@ -69,7 +69,9 @@ class Wikiextractor(PipelineJob):
             #    data[i]['internal links'] = sorted(data[i]['internal links'].items())
                 data[i]['internal links'] = base64.b64encode(pickle.dumps(data[i]['internal links'])).decode('utf-8')
                 print(data[i]['internal links'])
-                json.dump(data[i], f)
+                out_str = json.dumps(data[i])
+                if i < len(data)-1:
+                    f.write('\n')
 
                 i+=1
               #    base64.b64encode(pickle.dumps(self.internal_links)).decode('utf-8')
