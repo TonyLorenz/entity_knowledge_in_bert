@@ -70,7 +70,7 @@ class CollectMentionEntityCounts(PipelineJob):
 
         self.log("Collect the output")
         # collect the output
-        for file enumerate(tqdm(glob.glob(list_dir_string))):
+        for file_name enumerate(tqdm(glob.glob(list_dir_string))):
             (
                 (
                     local_linked_mention_counter,
