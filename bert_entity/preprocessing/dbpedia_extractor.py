@@ -67,7 +67,7 @@ class Wikiextractor(PipelineJob):
                     offset_list.append(x)
                 data[i]['internal_links'] = dict(zip(offset_list, internal_links_new))
                 del data[i]['internal_links'][-1]
-                data[i]['internal links'] = dict(sorted(data[i]['internal links'].items()))
+                data[i]['internal_links'] = dict(sorted(data[i]['internal links'].items()))
                 data[i]['internal_links'] = base64.b64encode(pickle.dumps(data[i]['internal_links'])).decode('utf-8')
                 print(data[i]['internal_links'])
                 out_str = json.dumps(data[i])
