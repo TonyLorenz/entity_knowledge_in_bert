@@ -1,4 +1,33 @@
-# "Investigating Entity Knowledge in BERT with Simple Neural End-To-End Entity Linking"  
+# "Investigating Entity Knowledge in BERT with Simple Neural End-To-End Entity Linking" 
+
+***DBPedia Edition***
+
+```
+git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in_bert.git
+cd /content/entity_knowledge_in_bert
+pip install -r requirements.txt
+git submodule update --init
+# Add paths to environment
+source setup_paths
+# Create directory
+mkdir -p data/benchmarks/
+# install pretrained BERT
+pip install pytorch_pretrained_bert
+mkdir tmp
+cd /content/entity_knowledge_in_bert/tmp/
+wget http://resources.mpi-inf.mpg.de/yago-naga/aida/download/aida-yago2-dataset.zip
+ls -l
+unzip /content/entity_knowledge_in_bert/tmp/aida-yago2-dataset.zip
+ls -l
+# move benchmark dataset in aida-yago2-dataset folder
+cp -r /content/entity_knowledge_in_bert/tmp/aida-yago2-dataset /content/entity_knowledge_in_bert/data/benchmarks/
+cd /content/entity_knowledge_in_bert/data/benchmarks/aida-yago2-dataset
+wget https://raw.githubusercontent.com/marcocor/bat-framework/master/src/main/resources/datasets/aida/AIDA-YAGO2-dataset-update.tsv
+mv /content/entity_knowledge_in_bert/data/benchmarks/aida-yago2-dataset/AIDA-YAGO2-dataset-update.tsv /content/entity_knowledge_in_bert/data/benchmarks/aida-yago2-dataset/AIDA-YAGO2-dataset.tsv
+
+```
+
+***DBPedia Edition - End***
 
 This repository contains the code for the CONLL 2019 paper [**"Investigating Entity Knowledge in BERT with Simple Neural End-To-End Entity Linking"**](https://arxiv.org/abs/2003.05473). The code is provided as a documentation for the paper and also for follow-up research.
 
