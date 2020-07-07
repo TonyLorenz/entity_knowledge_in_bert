@@ -53,8 +53,6 @@ class Wikiextractor(PipelineJob):
               while i<len(data):
                 internal_links_new = []
                 offset_list = []
-                data[i]["id"] = data[i]["id"]
-                data[i]['id'] = str(data[i]['id'])
                 item = data[i]['internal_links'].split(', ')
                 for word in item:
                   word = word.replace('_',' ')
@@ -73,6 +71,7 @@ class Wikiextractor(PipelineJob):
                 data[i]['internal_links'] = base64.b64encode(pickle.dumps(data[i]['internal_links'])).decode('utf-8')
                 print(data[i]['internal_links'])
                 out_str = json.dumps(data[i])
+                f.write(out_str)
                 if i < len(data)-1:
                     f.write('\n')
 
