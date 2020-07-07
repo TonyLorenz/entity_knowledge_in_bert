@@ -40,7 +40,7 @@ class Wikiextractor(PipelineJob):
         for input_file in glob.glob(
             f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/*"
         ):
-              data = pd.read_csv(input_file)
+              data = pd.read_xlsx(input_file)
               data = data.to_dict(orient = 'records')
               #  print(data)
               i=0
