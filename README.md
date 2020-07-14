@@ -4,8 +4,8 @@
 
 ```
 git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in_bert.git
-mv /content/dbpedia_dummy.xlsx /content/entity_knowledge_in_bert/bert_entity/preprocessing
-mv /content/dbpedia_dummy_excelfile.xlsx /content/entity_knowledge_in_bert/bert_entity/preprocessing
+# mv /content/dbpedia_dummy.xlsx /content/entity_knowledge_in_bert/bert_entity/preprocessing
+# mv /content/dbpedia_dummy_excelfile.xlsx /content/entity_knowledge_in_bert/bert_entity/preprocessing
 cd /content/entity_knowledge_in_bert
 pip install -r requirements.txt
 git submodule update --init
