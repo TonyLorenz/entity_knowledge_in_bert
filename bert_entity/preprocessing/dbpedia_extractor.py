@@ -55,7 +55,12 @@ class Wikiextractor(PipelineJob):
                 offset_list = []
                 item = data[i]['internal_links'].split(', ')
                 for word in item:
-                  word = word.replace('_',' ')
+                    #word = re.sub('^http://dbpedia.org/.*/', "", word)
+                    word = word.replace('_',' ')
+                    word = word.replace('_',' ')
+                    word = word.replace(', ', '')
+                    word = re.sub("\d", "", word)
+                    word = re.sub("\(.*\)", "", word)
                   if word != "":
                         internal_links_new.append((word, word))
             #      print(word)
