@@ -59,7 +59,7 @@ class DownloadWikiDump(PipelineJob):
         else:
             os.mkdir(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/")
             data_info = pd.read_csv('/content/entity_knowledge_in_bert/bert_entity/preprocessing/info_query_out')
-            data_info = data[['id', 'url', 'title', 'text']]
+            data_info = data_info[['id', 'url', 'title', 'text']]
             data_info = data_info.sort_values('url')
             data_info = data_info.reset_index(drop=True)
             data_links = pd.read_csv('/content/entity_knowledge_in_bert/bert_entity/preprocessing/links_query_out')
