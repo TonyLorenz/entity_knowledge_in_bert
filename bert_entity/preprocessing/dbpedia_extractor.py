@@ -62,14 +62,13 @@ class Wikiextractor(PipelineJob):
                     word = word.replace(', ', '')
                     word = re.sub("\d", "", word)
                     word = re.sub("\(.*\)", "", word)
-                  if word != "":
+                    if word != "":
                         internal_links_new.append((word, word))
-            #      print(word)
-                  x = data[i]['text'].find(word)
-                  if x>0:
-                    offset_list.append((x, x + len(word)))
-                  else:
-                    offset_list.append(x)
+                    x = data[i]['text'].find(word)
+                    if x>0:
+                        offset_list.append((x, x + len(word)))
+                    else:
+                        offset_list.append(x)
                 data[i]['internal_links'] = dict(zip(offset_list, internal_links_new))
                 if -1 in data[i]['internal_links'].keys():
                     del data[i]['internal_links'][-1]
