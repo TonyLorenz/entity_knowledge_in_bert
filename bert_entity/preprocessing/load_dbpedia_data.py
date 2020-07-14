@@ -55,7 +55,7 @@ class DownloadWikiDump(PipelineJob):
                     links_str = ''
                     j+=1
             data_info['internal_links'] = links_list_all
-            data_info.to_csv(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}dbpedia_dummy.csv/", index= False, header= True)
+            data_info.to_csv(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/dbpedia_dummy.csv/", index= False, header= True)
         else:
             os.mkdir(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/")
             data_info = pd.read_csv('/content/entity_knowledge_in_bert/bert_entity/preprocessing/info_query_out')
@@ -81,6 +81,6 @@ class DownloadWikiDump(PipelineJob):
                     links_str = ''
                     j+=1
             data_info['internal_links'] = links_list_all
-            data_info.to_csv(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}dbpedia_all.csv/", index= False, header= True)
+            data_info.to_csv(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/dbpedia_all.csv/", index= False, header= True)
 
         self.log("Download finished ")
