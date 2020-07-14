@@ -6,6 +6,7 @@ import multiprocessing
 import os
 import pickle
 import sys
+import re
 import pandas as pd
 from collections import Counter
 from typing import Dict
