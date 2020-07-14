@@ -38,16 +38,16 @@ class DownloadWikiDump(PipelineJob):
             i = 0
             j = 0
             
-            links_list = []
+            links_str = ''
             while i < len(data_links):
                 if data_links['url'][i] == data_info['url'][j]:
-                    links_list.append(data_links['internal_links'][i])
+                    links_str = links_str + (data_links['internal_links'][i]) +', '
                     i+=1
                     if i == len(data_links)-1:
-                        links_list_all.append(links_list)
+                        links_list_all.append(links_str)
                 else:
-                    links_list_all.append(links_list)
-                    links_list = []
+                    links_list_all.append(links_str)
+                    links_str = ''
                     j+=1
             data_info['internal_links'] = links_list_all
             data_info.to_csv(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}dbpedia_all.csv/", index= False, header= True)
