@@ -50,11 +50,13 @@ class DownloadWikiDump(PipelineJob):
                     i+=1
                     if i == len(data_links)-1:
                         links_list_all.append(links_str)
+                        print(links_str)
                 else:
                     links_list_all.append(links_str)
                     links_str = ''
                     j+=1
             data_info['internal_links'] = links_list_all
+            print(data_info)
             data_info.to_csv(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/dbpedia_dummy.csv", index= False, header= True)
         else:
             os.mkdir(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/")
