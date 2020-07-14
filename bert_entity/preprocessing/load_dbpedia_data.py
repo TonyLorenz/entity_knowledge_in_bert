@@ -33,7 +33,7 @@ class DownloadWikiDump(PipelineJob):
             #shutil.move("/content/entity_knowledge_in_bert/bert_entity/preprocessing/dbpedia_dummy_excelfile.xlsx", f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/dbpedia_dummy_excelfile.xlsx")
             os.mkdir(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/")
             data_info = pd.read_excel('/content/entity_knowledge_in_bert/bert_entity/preprocessing/dbpedia_dummy_excelfile.xlsx')
-            data_info = data[['id', 'url', 'title', 'text']]
+            data_info = data_info[['id', 'url', 'title', 'text']]
             data_info = data_info.sort_values('url')
             data_info = data_info.reset_index(drop=True)
             data_links = pd.read_excel('/content/entity_knowledge_in_bert/bert_entity/preprocessing/dbpedia_dummy.xlsx')
