@@ -36,7 +36,7 @@ class DownloadWikiDump(PipelineJob):
             data_info = data_info[['id', 'url', 'title', 'text']]
             data_info = data_info.sort_values('id')
             data_info = data_info.reset_index(drop=True)
-            data_links = pd.read_excel('bert_entity/preprocessing/internal_links_query_dummy.csv')
+            data_links = pd.read_csv('bert_entity/preprocessing/internal_links_query_dummy.csv')
             data_links = data_links.sort_values('id')
             data_links = data_links.reset_index(drop=True)
             links_list_all = []
