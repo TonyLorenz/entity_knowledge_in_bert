@@ -7,14 +7,13 @@ git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in
 # mv /content/dbpedia_dummy.xlsx /content/entity_knowledge_in_bert/bert_entity/preprocessing
 # mv /content/dbpedia_dummy_excelfile.xlsx /content/entity_knowledge_in_bert/bert_entity/preprocessing
 cd entity_knowledge_in_bert
-pip install -r requirements.txt
+conda install requirements.txt
 git submodule update --init
 # Add paths to environment
 source setup_paths
 # Create directory
 mkdir -p data/benchmarks/
 # install pretrained BERT
-pip install pytorch_pretrained_bert
 mkdir tmp
 cd tmp
 wget http://resources.mpi-inf.mpg.de/yago-naga/aida/download/aida-yago2-dataset.zip
