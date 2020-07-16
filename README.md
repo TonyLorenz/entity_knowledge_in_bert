@@ -4,6 +4,8 @@
 
 ```
 git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in_bert.git
+cp -r get_dummy_data/info_query_out_dummy.csv entity_knowledge_in_bert/bert_entity/preprocessing
+cp -r get_dummy_data/internal_links_query_dummy.csv entity_knowledge_in_bert/bert_entity/preprocessing
 # mv /content/dbpedia_dummy.xlsx /content/entity_knowledge_in_bert/bert_entity/preprocessing
 # mv /content/dbpedia_dummy_excelfile.xlsx /content/entity_knowledge_in_bert/bert_entity/preprocessing
 cd entity_knowledge_in_bert
