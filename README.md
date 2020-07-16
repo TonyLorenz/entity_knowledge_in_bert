@@ -25,6 +25,9 @@ cp -r aida-yago2-dataset ../data/benchmarks/
 cd ../data/benchmarks/aida-yago2-dataset
 wget https://raw.githubusercontent.com/marcocor/bat-framework/master/src/main/resources/datasets/aida/AIDA-YAGO2-dataset-update.tsv
 mv AIDA-YAGO2-dataset-update.tsv AIDA-YAGO2-dataset.tsv
+cd ../../../
+python3 bert_entity/preprocess_all.py -c config/dummy__preprocess.yaml
+
 
 ```
 
