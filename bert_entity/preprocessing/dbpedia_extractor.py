@@ -75,7 +75,7 @@ class Wikiextractor(PipelineJob):
                 if -1 in data[i]['internal_links'].keys():
                     del data[i]['internal_links'][-1]
                 print(data[i]['internal_links'])    
-                data[i]['internal_links'] = dict(sorted(data[i]['internal_links'].items()))
+                #data[i]['internal_links'] = dict(sorted(data[i]['internal_links'].items()))
                 data[i]['internal_links'] = base64.b64encode(pickle.dumps(data[i]['internal_links'])).decode('utf-8')
                 print(data[i]['internal_links'])
                 out_str = json.dumps(data[i])
