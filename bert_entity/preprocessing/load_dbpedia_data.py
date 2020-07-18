@@ -34,10 +34,10 @@ class DownloadWikiDump(PipelineJob):
             os.mkdir(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/")
             data_info = pd.read_csv('bert_entity/preprocessing/info_query_out_dummy.csv')
             data_info = data_info[['id', 'url', 'title', 'text']]
-            data_info = data_info.sort_values('id')
+            data_info = data_info.sort_values('url')
             data_info = data_info.reset_index(drop=True)
             data_links = pd.read_csv('bert_entity/preprocessing/internal_links_query_dummy.csv')
-            data_links = data_links.sort_values('id')
+            data_links = data_links.sort_values('url')
             data_links = data_links.reset_index(drop=True)
             links_list_all = []
             i = 0
@@ -45,7 +45,7 @@ class DownloadWikiDump(PipelineJob):
             
             links_str = ''
             while i < len(data_links):
-                if data_links['id'][i] == data_info['id'][j]:
+                if data_links['url'][i] == data_info['url'][j]:
                     links_str = links_str + (data_links['internal_links'][i]) +', '
                     i+=1
                     if i == len(data_links)-1:
@@ -62,10 +62,10 @@ class DownloadWikiDump(PipelineJob):
             os.mkdir(f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/")
             data_info = pd.read_csv('bert_entity/preprocessing/info_query_out.csv')
             data_info = data_info[['id', 'url', 'title', 'text']]
-            data_info = data_info.sort_values('id')
+            data_info = data_info.sort_values('url')
             data_info = data_info.reset_index(drop=True)
             data_links = pd.read_csv('bert_entity/preprocessing/internal_links_query_out.csv')
-            data_links = data_links.sort_values('id')
+            data_links = data_links.sort_values('url')
             data_links = data_links.reset_index(drop=True)
             links_list_all = []
             i = 0
@@ -73,7 +73,7 @@ class DownloadWikiDump(PipelineJob):
             
             links_str = ''
             while i < len(data_links):
-                if data_links['id'][i] == data_info['id'][j]:
+                if data_links['url'][i] == data_info['url'][j]:
                     links_str = links_str + (data_links['internal_links'][i]) +', '
                     i+=1
                     if i == len(data_links)-1:
