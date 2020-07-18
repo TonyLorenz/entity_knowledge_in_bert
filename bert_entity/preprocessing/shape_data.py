@@ -69,7 +69,7 @@ for item in data_info['url']:
   if item in data_links_dict.keys():
     found_url_list.append(data_links_dict[item])
   else:
-    data_info.drop(h)
+    found_url_list.append([])
 
 data_info['internal_links'] = found_url_list
 
