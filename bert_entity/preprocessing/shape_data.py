@@ -75,4 +75,4 @@ data_info['internal_links'] = found_url_list
 
 print(data_info)
 
-
+data_info.to_csv("dbpedia_data.csv", index= False, header= True)
