@@ -48,5 +48,5 @@ while i<len(links_df['internal_links']):
 links_df['url'] = url
 print(links_df) 
 
-links_df.to_csv("dbpedia_links.csv", index= False)
+links_df.to_csv("data_links.csv", index= False)
 print("to_csv done")
