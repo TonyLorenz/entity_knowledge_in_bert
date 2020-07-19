@@ -56,33 +56,36 @@ class Wikiextractor(PipelineJob):
                 offset_list = []
                 item = data[i]['internal_links'].split(', ')
                 for word in item:
-                    #word = re.sub('^http://dbpedia.org/.*/', "", word)
+                    word = re.sub('http://dbpedia.org/*/', "", word)
                     word = word.replace('_',' ')
-                    word = word.replace('_',' ')
+                    word = word.replace('Category:',' ')
                     word = word.replace(', ', '')
+                    word = word.replace(',', '')
+                    word = word.replace('\'', '')
+                    word = word.replace('\'', '')
+                    word = re.sub('\(*\)', "", word)
                     word = re.sub("\d", "", word)
                     word = re.sub("\(.*\)", "", word)
                     if word != "":
                         internal_links_new.append((word, word))
                     x = data[i]['text'].find(word)
-                    if x>0:
+                    if x>-1:
                         offset_list.append((x, x + len(word)))
                     else:
                         offset_list.append(x)
-                print(offset_list)
-                print(internal_links_new)
+                #print(offset_list)
+                #print(internal_links_new)
                 data[i]['internal_links'] = dict(zip(offset_list, internal_links_new))
                 if -1 in data[i]['internal_links'].keys():
                     del data[i]['internal_links'][-1]
                 print(data[i]['internal_links'])    
-                #data[i]['internal_links'] = dict(sorted(data[i]['internal_links'].items()))
+                data[i]['internal_links'] = dict(sorted(data[i]['internal_links'].items()))
                 data[i]['internal_links'] = base64.b64encode(pickle.dumps(data[i]['internal_links'])).decode('utf-8')
                 print(data[i]['internal_links'])
                 out_str = json.dumps(data[i])
                 f.write(out_str)
                 if i < len(data)-1:
                     f.write('\n')
-
                 i+=1
               #    base64.b64encode(pickle.dumps(self.internal_links)).decode('utf-8')
 
