@@ -57,7 +57,8 @@ git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in
 
 Prepare files
 ```
-# mv dbpedia_data.csv entity_knowledge_in_bert/bert_entity/preprocessing
+#cp -r dbpedia_data.csv entity_knowledge_in_bert/bert_entity/preprocessing
+cp -r dbpedia_data_dummy.csv entity_knowledge_in_bert/bert_entity/preprocessing
 cd entity_knowledge_in_bert
 # git install requirements.txt
 git submodule update --init
