@@ -2,10 +2,61 @@
 
 ***DBPedia Edition***
 
+#Getting data from dbpedia
+
+**Info_data: (columns 'id', 'title', 'text')
+
+```
+wget --> links from dbpedia page
+bzip2 -d --> files
+```
+
+Run query on data
+
+```
+SELECT DISTINCT ?abstract ?id ?url
+WHERE {
+?url <http://dbpedia.org/ontology/wikiPageID> ?id .
+?url <http://dbpedia.org/ontology/abstract> ?abstract  .
+}
+
+```
+Save output in "query_out" file
+
+Run get_raw_info_data_from_query.py
+
+```
+python3 get_raw_info_data_from_query.py
+```
+**Internal_links_data (columns 'id', 'internal_links')
+```
+wget http://downloads.dbpedia.org/2016-10/core-i18n/en/page_links_en.ttl.bz2
+bzip2 -d page_links_en.ttl.bz2
+
+```
+Run get_links_data_from_ttl_links_file.py
+
+```
+python3 get_links_data_from_ttl_links_file.py
+```
+
+**Shape data and merge info and internal_links
+
+run shape_data.py
+
+```
+python3 shape_data.py
+```
+
+**Prepare project and preprocess data
+
+Clone git
 ```
 git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in_bert.git
-cp -r get_dummy_data/info_query_out_dummy.csv entity_knowledge_in_bert/bert_entity/preprocessing
-cp -r get_dummy_data/internal_links_query_dummy.csv entity_knowledge_in_bert/bert_entity/preprocessing
+```
+
+Prepare files
+```
 # mv /content/dbpedia_dummy.xlsx /content/entity_knowledge_in_bert/bert_entity/preprocessing
 # mv /content/dbpedia_dummy_excelfile.xlsx /content/entity_knowledge_in_bert/bert_entity/preprocessing
 cd entity_knowledge_in_bert
@@ -28,10 +79,14 @@ cd ../data/benchmarks/aida-yago2-dataset
 wget https://raw.githubusercontent.com/marcocor/bat-framework/master/src/main/resources/datasets/aida/AIDA-YAGO2-dataset-update.tsv
 mv AIDA-YAGO2-dataset-update.tsv AIDA-YAGO2-dataset.tsv
 cd ../../../
+```
+
+Run preprocessing 
+```
 python3 bert_entity/preprocess_all.py -c config/dummy__preprocess.yaml
 
-
 ```
+
 
 ***DBPedia Edition - End***
 
