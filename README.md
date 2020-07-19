@@ -80,13 +80,39 @@ wget https://raw.githubusercontent.com/marcocor/bat-framework/master/src/main/re
 mv AIDA-YAGO2-dataset-update.tsv AIDA-YAGO2-dataset.tsv
 cd ../../../
 ```
+_(Dummy)_
 
 Run preprocessing 
 ```
 python3 bert_entity/preprocess_all.py -c config/dummy__preprocess.yaml
 
 ```
-**Run training on DBPedia**
+**Run training on DBPedia **
+```
+python3 bert_entity/train.py -c --create_integerized_training_valid_size 2 --create_integerized_training_test_size 2 config/dummy__train_on_wiki.yaml
+```
+
+**Finetune on AIDA-CoNLL benchmark**
+```
+python3 bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml
+```
+
+**Evaluate the best model on the AIDA-CoNLL benchmark**
+
+```
+python3 bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml --eval_on_test_only True --resume_from_checkpoint data/checkpoints/dummy_aidaconll_00001/best_f1-0.pt
+```
+
+
+
+_(All)_
+
+Run preprocessing 
+```
+python3 bert_entity/preprocess_all.py -c config/dummy__preprocess.yaml
+
+```
+**Run training on DBPedia **
 ```
 python3 bert_entity/train.py -c config/dummy__train_on_wiki.yaml
 ```
