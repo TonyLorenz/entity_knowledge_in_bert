@@ -4,7 +4,7 @@
 
 #Getting data from dbpedia
 
-**Info_data: (columns 'id', 'title', 'text')
+**Info_data: (columns 'id', 'title', 'text')**
 
 ```
 wget --> links from dbpedia page
@@ -28,7 +28,7 @@ Run get_raw_info_data_from_query.py
 ```
 python3 get_raw_info_data_from_query.py
 ```
-**Internal_links_data (columns 'id', 'internal_links')
+**Internal_links_data (columns 'id', 'internal_links')**
 ```
 wget http://downloads.dbpedia.org/2016-10/core-i18n/en/page_links_en.ttl.bz2
 bzip2 -d page_links_en.ttl.bz2
@@ -40,7 +40,7 @@ Run get_links_data_from_ttl_links_file.py
 python3 get_links_data_from_ttl_links_file.py
 ```
 
-**Shape data and merge info and internal_links
+**Shape data and merge info and internal_links**
 
 run shape_data.py
 
@@ -48,7 +48,7 @@ run shape_data.py
 python3 shape_data.py
 ```
 
-**Prepare project and preprocess data
+**Prepare project and preprocess data**
 
 Clone git
 ```
