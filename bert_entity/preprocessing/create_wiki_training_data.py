@@ -302,6 +302,15 @@ class Worker(multiprocessing.Process):
 
                 debug = wiki_article["id"] == "28490"
                 print(wiki_article["title"])
+                i = 0
+                for item in wiki_article["title"]:
+                    if item is float:
+                        wiki_article["title"][i] = str(wiki_article["title"][i])
+                        i+=1
+                    if item is int:
+                        wiki_article["title"][i] = str(wiki_article["title"][i])
+                        i+=1
+                    i+=1
                 wiki_article_title_set = get_stopwordless_token_set(wiki_article["title"])
 
                 def corefers_with_title_entity(s):
