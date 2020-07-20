@@ -7,6 +7,7 @@ import json
 import re
 
 data_info = pd.read_csv("data_info.csv", names= ['text', 'id', 'url'])
+#data_info = data_info.head(x)
 print(data_info)
 i =0
 while i< len(data_info['id']):
@@ -30,6 +31,7 @@ data_info['title'] = names
 #data_info = data_info.reset_index(drop=True)
 print(data_info['url'])
 data_links = pd.read_csv('data_links.csv')
+#data_links = data_links.head(y)
 #data_links = data_links.sort_values('url')
 #data_links = data_links.reset_index(drop=True)
 print(data_links)
