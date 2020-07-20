@@ -19,6 +19,7 @@ Added files
 - dbpedia_extractor.py
 - NeuralELwBERT
 
+(Explenations in ### Preprocessing tasks)
 
 # Setup
 
@@ -167,12 +168,23 @@ python3 bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml --eval_on
 
 Preprocessing consists of the following tasks (the respective code is in `bert_entity/preprocessing`):
 
-- get_links_data_from_ttl_links_file.py
-- get_raw_info_data_from_query.py
-- shape_data.py
-- load_dbpedia_data.py
-- dbpedia_extractor.py
 - NeuralELwBERT
+  - Program for querying DBPedia with sparql.
+- get_links_data_from_ttl_links_file.py
+  - Reads through all the lines in the links ttl file from DBPedia. Extracts only the url and the respective links and puts them into csv with columns 'url', 'internal_links'.
+- get_raw_info_data_from_query.py
+  - Reads through the lines of the extracted query with informationa and text, extracted from DBPedia and puts them into a csv file with columns 'id', 'url, 'text'.
+- shape_data.py
+  - Reads info_data and links_data. 
+  - Extracts the names of the articles from the urls and brings info_data in the shape of 'id', 'url, 'title', 'text'.
+  - Merges all links from respective articles into one array per article.
+  - Merges and saves info_data and links_data into csv with columns 'id', 'url, 'title', 'text', 'internal_links'.
+- load_dbpedia_data.py
+  - Attaches the dbpedia_data.csv file to Broscheit's preprocessing code.
+- dbpedia_extractor.py
+  - Edits internal_links so that only the title of the resource is left. Finds those titles in text of respective article which are then the mentions.
+  - Finds position of mention in text and brings them in tuple shape ((start position, end position), (title, mention)).
+  - Replaces the contents of the 'internal_links' with the tuples and drop those that couldn't be found in the text.
 
 
 - CreateRedirects
