@@ -141,12 +141,12 @@ cd ../../../
 # Preprocessing & Running model
 
 
-**Run preprocessing **
+**Run preprocessing**
 ```
 python3 bert_entity/preprocess_all.py --create_integerized_training_valid_size 20 --create_integerized_training_test_size 20 -c config/dummy__preprocess.yaml
 
 ```
-**Run training on DBPedia dummy **
+**Run training on DBPedia dummy**
 ```
 python3 bert_entity/train.py -c config/dummy__train_on_wiki.yaml
 ```
