@@ -6,9 +6,32 @@
 
 **Info_data: (columns 'id', 'title', 'text')**
 
+Clone git
 ```
-wget --> links from dbpedia page
-bzip2 -d --> files
+git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in_bert.git
+```
+
+Get data from DBPedia
+
+```
+cd entity_knowledge_in_bert/java_code
+mkdir input_files
+wget --> http://downloads.dbpedia.org/2016-10/core-i18n/en/long_abstracts_en.ttl.bz2 http://downloads.dbpedia.org/2016-10/core-i18n/en/page_ids_en.ttl.bz2
+bzip2 -d --> http://downloads.dbpedia.org/2016-10/core-i18n/en/long_abstracts_en.ttl.bz2 http://downloads.dbpedia.org/2016-10/core-i18n/en/page_ids_en.ttl.bz2
+cd ..
+
+mkdir query_in
+nano query
+--> put query in
+mkdir query_out
+
+```
+Load data into the triple database and execute queries
+
+```
+java - jar neuralbert_load_data.jar
+java -jar neuralbert_execute_queries.jar
+
 ```
 
 Run query on data
@@ -50,10 +73,7 @@ python3 shape_data.py
 
 **Prepare project and preprocess data**
 
-Clone git
-```
-git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in_bert.git
-```
+
 
 Prepare files
 ```
