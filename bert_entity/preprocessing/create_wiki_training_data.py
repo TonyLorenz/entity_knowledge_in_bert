@@ -301,6 +301,7 @@ class Worker(multiprocessing.Process):
                 wiki_article = json.loads(wiki_article)
 
                 debug = wiki_article["id"] == "28490"
+                print(wiki_article["title"])
                 wiki_article_title_set = get_stopwordless_token_set(wiki_article["title"])
 
                 def corefers_with_title_entity(s):
