@@ -260,7 +260,7 @@ Preprocessing consists of the following tasks (the respective code is in `bert_e
 _Here we use an already extracted mapping provided by DBPedia that was created from a 2016 dump. Please note that in the experiments for the paper a Wikipedia dump from 2017 was used. The DbPedia dictionaries might not  be adequate for the latest wiki dumps._
 
 
-### Available options
+### Available options for Preprocessing
  
  Preprocessing supports the following configurations: 
 
@@ -333,7 +333,7 @@ _Here we use an already extracted mapping provided by DBPedia that was created f
 
 ```  
 
-### Available options
+### Available options for Training
  
  Training supports the following configurations: 
 
