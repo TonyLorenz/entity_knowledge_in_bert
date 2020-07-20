@@ -1,6 +1,5 @@
-# "Investigating Entity Knowledge in BERT with Simple Neural End-To-End Entity Linking" 
+# "Investigating Entity Knowledge in BERT with Simple Neural End-To-End Entity Linking" - _DBPedia Edition_
 
-# ***DBPedia Edition***
 
 # Getting data from dbpedia
 
