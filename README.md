@@ -1,15 +1,15 @@
 # "Investigating Entity Knowledge in BERT with Simple Neural End-To-End Entity Linking" - _DBPedia Edition_
 
+# Information
 
-# Getting data from dbpedia
 
+# Setup
 
-Clone git
 ```
 git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in_bert.git
 ```
 
-**Info_data: (columns 'id', 'title', 'text')**
+**Get Info_data: (columns 'id', 'title', 'text')**
 
 ```
 cd entity_knowledge_in_bert/java_code
@@ -32,14 +32,12 @@ WHERE {
 }
 
 ```
-```
-cd ..
-mkdir query_out
 
-```
 Load data into the triple database and execute queries
 
 ```
+cd ..
+mkdir query_out
 java - jar neuralbert_load_data.jar
 java -jar neuralbert_execute_queries.jar
 
@@ -48,21 +46,23 @@ cd ../bert_entity/preprocessing
 
 ```
 
-Run get_raw_info_data_from_query.py
+Extract info data from query and put in csv shape with columns 'id', 'title', 'text'
 
 ```
 python3 get_raw_info_data_from_query.py
 ```
 
 
+**Get Internal_links_data (columns 'id', 'internal_links')**
 
-**Internal_links_data (columns 'id', 'internal_links')**
+Download dbpedia data with page links
+
 ```
 wget http://downloads.dbpedia.org/2016-10/core-i18n/en/page_links_en.ttl.bz2
 bzip2 -d page_links_en.ttl.bz2
 
 ```
-Run get_links_data_from_ttl_links_file.py
+Extract the url's and internal links from ttl file and put in csv shape with columns 'id' 'internal_links'
 
 ```
 python3 get_links_data_from_ttl_links_file.py
@@ -77,13 +77,26 @@ python3 shape_data.py
 ```
 --> now you have a dbpedia_data.csv file with columns 'id', 'url', 'title', 'text', 'internal_links'
 
+_Only_dummy_
+
+If you only want a dummy and not all of DBPedia, open shape_data.py and set x and y to a number with x<y
+
+```
+#line 10
+data_info = data_info.head(x)
+
+#line 35
+data_links = data_links.head(y)
+```
+
 
 **Prepare project and preprocess data**
 
 Prepare files
+
 ```
 #cp -r dbpedia_data.csv entity_knowledge_in_bert/bert_entity/preprocessing
-cp -r getdata/dbpedia_data.csv entity_knowledge_in_bert/bert_entity/preprocessing
+#cp -r getdata/dbpedia_data.csv entity_knowledge_in_bert/bert_entity/preprocessing
 cd entity_knowledge_in_bert
 # git install requirements.txt
 git submodule update --init
@@ -105,14 +118,17 @@ wget https://raw.githubusercontent.com/marcocor/bat-framework/master/src/main/re
 mv AIDA-YAGO2-dataset-update.tsv AIDA-YAGO2-dataset.tsv
 cd ../../../
 ```
-_(Dummy)_
 
-Run preprocessing 
+
+# Preprocessing & Running model
+
+
+**Run preprocessing **
 ```
 python3 bert_entity/preprocess_all.py --create_integerized_training_valid_size 20 --create_integerized_training_test_size 20 -c config/dummy__preprocess.yaml
 
 ```
-**Run training on DBPedia **
+**Run training on DBPedia dummy **
 ```
 python3 bert_entity/train.py -c config/dummy__train_on_wiki.yaml
 ```
@@ -129,29 +145,6 @@ python3 bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml --eval_on
 ```
 
 
-
-_(All)_
-
-Run preprocessing 
-```
-python3 bert_entity/preprocess_all.py -c config/dummy__preprocess.yaml
-
-```
-**Run training on DBPedia **
-```
-python3 bert_entity/train.py -c config/dummy__train_on_wiki.yaml
-```
-
-**Finetune on AIDA-CoNLL benchmark**
-```
-python3 bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml
-```
-
-**Evaluate the best model on the AIDA-CoNLL benchmark**
-
-```
-python3 bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml --eval_on_test_only True --resume_from_checkpoint data/checkpoints/dummy_aidaconll_00001/best_f1-0.pt
-```
 
 ***DBPedia Edition - End***
 
