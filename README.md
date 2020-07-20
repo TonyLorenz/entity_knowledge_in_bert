@@ -2,6 +2,24 @@
 
 # Information
 
+This project is based on Samuel Broscheit's project https://github.com/samuelbroscheit/entity_knowledge_in_bert. The aim was to exchang the database Wikipedia that he used with another database in order to build a pipeline for other databases. I this case I used DBPedia which is also based on Wikipedia.
+
+Altered files:
+
+- create_wiki_training_data.py
+- create_integerized_wiki_training.py
+- collect_mention_entity_counts.py
+
+Added files
+
+- get_links_data_from_ttl_links_file.py
+- get_raw_info_data_from_query.py
+- shape_data.py
+- load_dbpedia_data.py
+- dbpedia_extractor.py
+
+- NeuralELwBERT
+
 
 # Setup
 
@@ -144,139 +162,12 @@ python3 bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml
 python3 bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml --eval_on_test_only True --resume_from_checkpoint data/checkpoints/dummy_aidaconll_00001/best_f1-0.pt
 ```
 
-
-
 ***DBPedia Edition - End***
-
-This repository contains the code for the CONLL 2019 paper [**"Investigating Entity Knowledge in BERT with Simple Neural End-To-End Entity Linking"**](https://arxiv.org/abs/2003.05473). The code is provided as a documentation for the paper and also for follow-up research.
-
-# <p align="center"> <img src="docs/Bert-Entity.png" alt="Bert-Entity" width="70%"> </p>
-
-The content of this page covers the following topics: 
-
-1. [Quick start](#quick-start)
-2. [Preparation and Installation](#preparation-and-installation)
-3. [Preprocessing of Wikipedia and the AIDA-CONLL entity linking benchmark into a sequence tagging format](#preprocessing-data)
-4. [Finetuning/Training a BERT-Entity model on Wikipedia](#training)
-5. [Finetuning a BERT-Entity model on the AIDA-CONLL entity linking benchmark](#training)
-6. [Using a BERT-Entity model in a downstream task](#evalation-on-downstream-tasks)
-7. [Issues and possible improvements](#issues-and-possible-improvements)
-
-## Quick start
-
-Here are all the steps until the finetuning and evaluation on the AIDA-CoNLL benchmark in a prototyping setting (i.e. a smaller model pretrained on reduced Wikipedia data):
-
-- The project is installed as follows:
-
-    ```
-    git clone https://github.com/samuelbroscheit/entity_knowledge_in_bert.git
-    cd entity_knowledge_in_bert
-    pip install -r requirements.txt
-    git submodule update --init
-    ```
-
-- Add paths to environment
-
-    ```
-    source setup_paths
-    ```
-
-- Create directory
-
-    ```
-    mkdir -p data/benchmarks/
-    ```
-
-    The AIDA-CoNLL benchmark file should be located under `data/benchmarks/aida-yago2-dataset/AIDA-YAGO2-dataset.tsv`. Get it from https://www.mpi-inf.mpg.de/departments/databases-and-information-systems/research/yago-naga/aida/downloads/ . If you get it from somewhere else, then please make sure that you have the correct file with 6 columns: Token, Mention, Yago Name, Wiki Name, Wiki Id, Freebase Id. 
-
-- Run preprocessing
-
-    ```
-    python bert_entity/preprocess_all.py -c config/dummy__preprocess.yaml
-    ```
-
-- Run pretraining on Wikipedia
-
-    ```
-    python bert_entity/train.py -c config/dummy__train_on_wiki.yaml
-    ```
-
-- Finetune on AIDA-CoNLL benchmark
-
-    ```
-    python bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml
-    ```
-
-- Evaluate the best model on the AIDA-CoNLL benchmark
-
-    ```
-    python bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml --eval_on_test_only True --resume_from_checkpoint data/checkpoints/dummy_aidaconll_00001/best_f1-0.pt
-    ```
-
-
-
-## Preparation and Installation
-
-For downloading and processing the full data and for storing checkpoints you should have at least 500GB of free space in the respective filesystem. If you just want to prototype there are also prepared configurations that need less space (~100GB).
-
-### Installation
-
-To install run the following commands:
-
-```
-git clone https://github.com/samuelbroscheit/entity_knowledge_in_bert.git
-cd entity_knowledge_in_bert
-pip install -r requirements.txt
-git submodule update --init
-```
-### Setup Paths
-
-**Every time** you run the code you have to setup up the paths for python with
-
-```
-source setup_paths
-```
-
-### Prepare AIDA CoNLL-YAGO2 benchmark data
-
-First create the directory
-
-```
-mkdir -p data/benchmarks/
-```
-
-and then retrieve the AIDA CoNLL-YAGO2 benchmark from https://www.mpi-inf.mpg.de/departments/databases-and-information-systems/research/yago-naga/aida/downloads/ (the benchmark is referred to as AIDA Conll throughout the code). The resulting file should be located under `data/benchmarks/aida-yago2-dataset/AIDA-YAGO2-dataset.tsv`. If you get it from somewhere else, please make sure that you have the correct file with 6 columns: Token, Mention, Yago Name, Wiki Name, Wiki Id, Freebase Id. 
-
-
-## Preprocessing data
-
-1. [Run preprocessing](#run-preprocessing)
-2. [Prepared configurations](#prepared-configurations)
-3. [Available options](#available-options)
-4. [Preprocessing tasks](#preprocessing-tasks)
-
-### Run preprocessing
-
-The preprocessing pipeline will take care of all downloads and processing of the data. You run the preprocessing with:
-
-```  
-python bert_entity/preprocess_all.py -c PREPROC_CONFIG_FILE_NAME
-```  
-
-PREPROC_CONFIG_FILE_NAME is a yaml file, but all options can also be given on the command line. 
-
-### Prepared configurations
-
-In the config folder you will find two configurations:
-
-- [config/dummy__preprocess.yaml](config/dummy__preprocess.yaml) is a setting for prototyping and testing the preprocessing pipeline and for prototyping the BERT-Entity training.
-
-- [config/conll2019__preprocess.yaml](config/conll2019__preprocess.yaml) is the setting "Setting 2" that was used in the the CoNLL 2019 paper for the BERT-Entity model with ~500K entities. 
 
 
 ### Available options
  
- The PREPROC_CONFIG_FILE_NAME supports the following configurations: 
+ Preprocessing supports the following configurations: 
 
 
 ```  
@@ -301,13 +192,6 @@ In the config folder you will find two configurations:
   --uncased                     Should the input token dictionary be uncased
 
 
-   # DownloadWikiDump
-   
-  --download_data_only_dummy    Only download one wiki file
-
-  --download_2017_enwiki        Download the enwiki 2017 dump to reproduce the experiments for the
-                                CONLL 2019 paper
-
 
    # CollectMentionEntityCounts
 
@@ -315,10 +199,6 @@ In the config folder you will find two configurations:
                                 Number of worker for parallel processing of the Wikipedia dump to
                                 collect mention entities.
 
-
-   # WikiExtractor
-
-  --wikiextractor_num_workers   Number of worker for parallel processing of the Wikipedia dump
 
 
    # CreateWikiTrainingData
