@@ -52,7 +52,7 @@ class Wikiextractor(PipelineJob):
               f = open(f"data/versions/{self.opts.data_version_name}/wikiextractor_out/{self.opts.wiki_lang_version}/{new_file}","w")
 
               while i<len(data):
-                data[i]['title'] = str([i]['title'])
+                data[i]['title'] = str(data[i]['title'])
                 internal_links_new = []
                 offset_list = []
                 item = data[i]['internal_links'].split(', ')
