@@ -164,7 +164,7 @@ python3 bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml --eval_on
 
 
 
-### Preprocessing tasks
+# Explenation of preprocessing tasks
 
 Preprocessing consists of the following tasks (the respective code is in `bert_entity/preprocessing`):
 
@@ -259,6 +259,7 @@ Preprocessing consists of the following tasks (the respective code is in `bert_e
 ###### Footnote 
 _Here we use an already extracted mapping provided by DBPedia that was created from a 2016 dump. Please note that in the experiments for the paper a Wikipedia dump from 2017 was used. The DbPedia dictionaries might not  be adequate for the latest wiki dumps._
 
+# Options
 
 ### Available options for Preprocessing
  
