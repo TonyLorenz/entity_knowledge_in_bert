@@ -18,7 +18,7 @@ while i< len(data_info['id']):
 names = []
 j=0
 while j< len(data_info['id']):
-  names.append(re.sub("http://dbpedia.org/resource/", "", data_info['url'][j]))
+  names.append(str(re.sub("http://dbpedia.org/resource/", "", data_info['url'][j])))
   j+=1
 
 
