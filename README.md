@@ -84,7 +84,7 @@ python3 shape_data.py
 Prepare files
 ```
 #cp -r dbpedia_data.csv entity_knowledge_in_bert/bert_entity/preprocessing
-cp -r getlinks/dbpedia_data.csv entity_knowledge_in_bert/bert_entity/preprocessing
+cp -r getdata/dbpedia_data.csv entity_knowledge_in_bert/bert_entity/preprocessing
 cd entity_knowledge_in_bert
 # git install requirements.txt
 git submodule update --init
