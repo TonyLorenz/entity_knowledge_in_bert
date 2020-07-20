@@ -2,39 +2,28 @@
 
 ***DBPedia Edition***
 
-#Getting data from dbpedia
+# Getting data from dbpedia
 
-**Info_data: (columns 'id', 'title', 'text')**
 
 Clone git
 ```
 git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in_bert.git
 ```
 
-Get data from DBPedia
+**Info_data: (columns 'id', 'title', 'text')**
 
 ```
 cd entity_knowledge_in_bert/java_code
 mkdir input_files
+cd input_files
 wget --> http://downloads.dbpedia.org/2016-10/core-i18n/en/long_abstracts_en.ttl.bz2 http://downloads.dbpedia.org/2016-10/core-i18n/en/page_ids_en.ttl.bz2
 bzip2 -d --> http://downloads.dbpedia.org/2016-10/core-i18n/en/long_abstracts_en.ttl.bz2 http://downloads.dbpedia.org/2016-10/core-i18n/en/page_ids_en.ttl.bz2
 cd ..
 
 mkdir query_in
 nano query
+```
 --> put query in
-mkdir query_out
-
-```
-Load data into the triple database and execute queries
-
-```
-java - jar neuralbert_load_data.jar
-java -jar neuralbert_execute_queries.jar
-
-```
-
-Run query on data
 
 ```
 SELECT DISTINCT ?abstract ?id ?url
@@ -44,13 +33,30 @@ WHERE {
 }
 
 ```
-Save output in "query_out" file
+```
+cd ..
+mkdir query_out
+
+```
+Load data into the triple database and execute queries
+
+```
+java - jar neuralbert_load_data.jar
+java -jar neuralbert_execute_queries.jar
+
+mv query_out/query_out ../bert_entity/preprocessing
+cd ../bert_entity/preprocessing
+
+```
 
 Run get_raw_info_data_from_query.py
 
 ```
 python3 get_raw_info_data_from_query.py
 ```
+
+
+
 **Internal_links_data (columns 'id', 'internal_links')**
 ```
 wget http://downloads.dbpedia.org/2016-10/core-i18n/en/page_links_en.ttl.bz2
@@ -70,10 +76,10 @@ run shape_data.py
 ```
 python3 shape_data.py
 ```
+--> now you have a dbpedia_data.csv file with columns 'id', 'url', 'title', 'text', 'internal_links'
+
 
 **Prepare project and preprocess data**
-
-
 
 Prepare files
 ```
