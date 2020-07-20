@@ -28,10 +28,10 @@ data_info['title'] = names
 i = 0
 for item in data_info["title"]:
   if item is float:
-    data_info["title"][i] = str(wiki_article["title"][i])
+    data_info["title"][i] = str(data_info["title"][i])
     i+=1
   if item is int:
-    data_info["title"][i] = str(wiki_article["title"][i])
+    data_info["title"][i] = str(data_info["title"][i])
     i+=1
   i+=1
 
