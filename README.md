@@ -110,7 +110,7 @@ _(Dummy)_
 
 Run preprocessing 
 ```
-python3 bert_entity/preprocess_all.py --create_integerized_training_valid_size 2 --create_integerized_training_test_size 2 -c config/dummy__preprocess.yaml
+python3 bert_entity/preprocess_all.py --create_integerized_training_valid_size 20 --create_integerized_training_test_size 20 -c config/dummy__preprocess.yaml
 
 ```
 **Run training on DBPedia **
