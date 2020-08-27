@@ -82,6 +82,11 @@ bzip2 -d page_links_en.ttl.bz2
 ```
 Extract the url's and internal links from ttl file and put in csv shape with columns 'id' 'internal_links'
 
+_full_version_
+
+
+
+_Only_dummy_
 ```
 python3 get_links_data_from_ttl_links_file.py
 ```
@@ -113,15 +118,16 @@ data_links = data_links.head(y)
 Prepare files
 
 ```
-#cp -r dbpedia_data.csv entity_knowledge_in_bert/bert_entity/preprocessing
-#cp -r getdata2/dbpedia_data.csv entity_knowledge_in_bert/bert_entity/preprocessing
 cd entity_knowledge_in_bert
 # git install requirements.txt
 git submodule update --init
+
 # Add paths to environment
 source setup_paths
+
 # Create directory
 mkdir -p data/benchmarks/
+
 # install pretrained BERT
 mkdir tmp
 cd tmp
@@ -129,6 +135,7 @@ wget http://resources.mpi-inf.mpg.de/yago-naga/aida/download/aida-yago2-dataset.
 ls -l
 unzip aida-yago2-dataset.zip
 ls -l
+
 # move benchmark dataset in aida-yago2-dataset folder
 cp -r aida-yago2-dataset ../data/benchmarks/
 cd ../data/benchmarks/aida-yago2-dataset
