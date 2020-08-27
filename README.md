@@ -82,11 +82,9 @@ bzip2 -d page_links_en.ttl.bz2
 ```
 Extract the url's and internal links from ttl file and put in csv shape with columns 'id' 'internal_links'
 
-_full_version_
-
-
 
 _Only_dummy_
+
 ```
 python3 get_links_data_from_ttl_links_file.py
 ```
@@ -99,18 +97,6 @@ run shape_data.py
 python3 shape_data.py
 ```
 --> now you have a dbpedia_data.csv file with columns 'id', 'url', 'title', 'text', 'internal_links'
-
-_Only_dummy_
-
-If you only want a dummy and not all of DBPedia, open shape_data.py and set x and y to a number with x<y
-
-```
-#line 10
-data_info = data_info.head(x)
-
-#line 35
-data_links = data_links.head(y)
-```
 
 
 **Prepare project and preprocess data**
@@ -150,7 +136,7 @@ cd ../../../
 
 **Run preprocessing**
 ```
-python3 bert_entity/preprocess_all.py --create_integerized_training_valid_size 20 --create_integerized_training_test_size 20 -c config/dummy__preprocess.yaml
+python3 bert_entity/preprocess_all.py --create_integerized_training_valid_size 100 --create_integerized_training_test_size 100 -c config/dummy__preprocess.yaml
 
 ```
 **Run training on DBPedia dummy**
