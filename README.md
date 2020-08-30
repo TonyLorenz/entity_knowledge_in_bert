@@ -45,9 +45,9 @@ _Only_dummy_ --> we only run it with a dummy here because we set up the pipeline
 git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in_bert.git
 ```
 
-**Step 1 & 2: Info_data**
+**Step 1 & 2: Get Info_data: (columns 'id', 'url', 'text')**
 
-*Get Info_data: (columns 'id', 'url', 'text')*
+Load data and set up querying steps
 
 ```
 cd entity_knowledge_in_bert/java_code
@@ -81,9 +81,8 @@ Extract info data from query and put in csv shape with columns 'id', 'title', 't
 python3 get_raw_info_data_from_query.py
 ```
 
-**Step 1 & 3: Internal links data**
+**Step 1 & 3: Get Internal_links_data (columns 'id', 'internal_links')**
 
-*Get Internal_links_data (columns 'id', 'internal_links')*
 
 Download dbpedia data with page links
 
@@ -106,15 +105,15 @@ run shape_data.py
 python3 shape_data.py
 ```
 --> now you have a dbpedia_data.csv file with columns 'id', 'url', 'title', 'text', 'internal_links'
---> *Step 5 & 6 are integrated in the preprocessing of the orignal code*
 
-**Prepare project and preprocess data**
+--> Step 5 & 6 are integrated in the preprocessing of the orignal code
+
+
+**Prepare running of original code**
 
 Prepare files
 
 ```
-#cp -r dbpedia_data.csv entity_knowledge_in_bert/bert_entity/preprocessing
-#cp -r getdata2/dbpedia_data.csv entity_knowledge_in_bert/bert_entity/preprocessing
 cd entity_knowledge_in_bert
 # git install requirements.txt
 git submodule update --init
