@@ -37,13 +37,17 @@ This is what steps we took in downloading and preparing the data:
 5. Find internal links in abstracts of each respective article to create mentions and put data in exact shape that the Wikiextractor outputs with *dbpedia_extractor.py*
 6. Attach data to the rest of the code with *load_dbpedia_data.py*
 
+_Only_dummy_ --> we only run it with a dummy here because we set up the pipeline like this, to run over entire DBPedia data, we need to split the data
+
 # Setup
 
 ```
 git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in_bert.git
 ```
 
-**Get Info_data: (columns 'id', 'url', 'text')**
+**Step 1 & 2: Info_data**
+
+*Get Info_data: (columns 'id', 'url', 'text')*
 
 ```
 cd entity_knowledge_in_bert/java_code
@@ -54,16 +58,7 @@ bzip2 -d --> http://downloads.dbpedia.org/2016-10/core-i18n/en/long_abstracts_en
 cd ..
 
 mkdir query_in
-nano query
-```
---> put query in
-
-```
-SELECT DISTINCT ?abstract ?id ?url
-WHERE {
-?url <http://dbpedia.org/ontology/wikiPageID> ?id .
-?url <http://dbpedia.org/ontology/abstract> ?abstract  .
-}
+mv query.txt query_in
 
 ```
 
@@ -86,8 +81,9 @@ Extract info data from query and put in csv shape with columns 'id', 'title', 't
 python3 get_raw_info_data_from_query.py
 ```
 
+**Step 1 & 3: Internal links data**
 
-**Get Internal_links_data (columns 'id', 'internal_links')**
+*Get Internal_links_data (columns 'id', 'internal_links')*
 
 Download dbpedia data with page links
 
@@ -102,7 +98,7 @@ Extract the url's and internal links from ttl file and put in csv shape with col
 python3 get_links_data_from_ttl_links_file.py
 ```
 
-**Shape data and merge info and internal_links**
+**Step 4: Shape data and merge info and internal_links**
 
 run shape_data.py
 
@@ -110,19 +106,7 @@ run shape_data.py
 python3 shape_data.py
 ```
 --> now you have a dbpedia_data.csv file with columns 'id', 'url', 'title', 'text', 'internal_links'
-
-_Only_dummy_
-
-If you only want a dummy and not all of DBPedia, open shape_data.py and set x and y to a number with x<y
-
-```
-#line 10
-data_info = data_info.head(x)
-
-#line 35
-data_links = data_links.head(y)
-```
-
+--> *Step 5 & 6 are integrated in the preprocessing of the orignal code*
 
 **Prepare project and preprocess data**
 
