@@ -1,0 +1,6 @@
+SELECT DISTINCT ?url ?id ?abstract
+WHERE {
+?url <http://dbpedia.org/ontology/wikiPageID> ?id .
+?url <http://dbpedia.org/ontology/abstract> ?abstract  .
+
+}
