@@ -19,9 +19,23 @@ Added files
 - dbpedia_extractor.py
 
 Added files by superviser
+
 - NeuralELwBERT
 
 (Explenations in ### Preprocessing tasks)
+
+# Process
+
+The original model with Wikipedia has roughly three steps: (1) Downloading and extracting the data (Wikiextractor), (2) Preprocessing the data, (3) Training and Finetuning on the KB and the benchmark dataset. We have replaced step (1) and then continued stept (2) and (3) with our data.
+
+This is what steps we took in downloading and preparing the data:
+
+1. Downloading all datasets from DBpedia that we need
+2. Using the java code in the *NeuralELwBERT* folder to query over "Info_data" so that we get (columns 'id', 'url', 'text') from all DBPedia articles and putting them into csv format with *get_raw_info_data_from_query.py*
+3. Extracting all internal links with from page_links_en.ttl *get_links_data_from_ttl_links_file.py*
+4. Adding "title" to the dataset, sorting all internal links according to their respective articles and putting them in a the lists in column "internal_links" with *shape_data.py*
+5. Find internal links in abstracts of each respective article to create mentions and put data in exact shape that the Wikiextractor outputs with *dbpedia_extractor.py*
+6. Attach data to the rest of the code with *load_dbpedia_data.py*
 
 # Setup
 
@@ -29,7 +43,7 @@ Added files by superviser
 git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in_bert.git
 ```
 
-**Get Info_data: (columns 'id', 'title', 'text')**
+**Get Info_data: (columns 'id', 'url', 'text')**
 
 ```
 cd entity_knowledge_in_bert/java_code
