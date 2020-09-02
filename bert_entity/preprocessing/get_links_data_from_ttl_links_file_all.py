@@ -61,7 +61,7 @@ while counter <200:
  links_df['url'] = url
  #print(links_df) 
 
- links_df.to_csv(f"data_links_{counter}.csv", index= False)
+ links_df.to_csv(f"data_links/data_links_{counter}.csv", index= False)
  print(f"Counter {counter} done!")
  counter += 1
 #print("to_csv done")
