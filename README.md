@@ -113,6 +113,7 @@ python3 get_links_data_from_ttl_links_file_dummy.py
 _all_of_DBpedia_
 
 ```
+mkdir data_links
 python3 get_links_data_from_ttl_links_file.py
 ```
 
