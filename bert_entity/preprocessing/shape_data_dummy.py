@@ -29,6 +29,11 @@ while j< len(data_info['id']):
 
 data_info['title'] = names
 
+
+    """
+    Because some of the titles were numbers, the following preprocessing steps couldn't work with those articles. We filter them out here.
+    """
+    
 i = 0
 for item in data_info["title"]:
   if item is float:
