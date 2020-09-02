@@ -1,9 +1,9 @@
 import re
 import pandas as pd
 
-    """
-    Read through page_links_en.ttl file that contains all internal links. Then puts URI and internal link into individual strings.
-    """
+
+# Read through page_links_en.ttl file that contains all internal links. Then puts URI and internal link into individual strings.
+
   
 fp = open('page_links_en.ttl', 'r')
 print("fp = open('page_links_en.ttl', 'r') done")
@@ -32,9 +32,9 @@ url = []
 
 i =0
 
-    """
-    Split and edit each line to get URI and internal links individually as strings.
-    """
+
+#Split and edit each line to get URI and internal links individually as strings.
+
   
 while i<len(links_df['internal_links']):
   item = str(links_df['internal_links'][i])
