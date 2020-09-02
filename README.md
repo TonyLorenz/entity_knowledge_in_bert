@@ -132,7 +132,7 @@ _all_of_DBpedia_
 python3 shape_data.py
 ```
 
---> now you have a dbpedia_data.csv file (or in case you run it with all of DBpedia, multiple dbpedia_data{num}.csv files) with columns 'id', 'url', 'title', 'text', 'internal_links'
+--> now you have a dbpedia_data.csv file with columns 'id', 'url', 'title', 'text', 'internal_links'
 --> Step 5 & 6 are integrated in the preprocessing of the orignal code
 
 
