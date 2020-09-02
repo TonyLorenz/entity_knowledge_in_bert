@@ -47,7 +47,44 @@ git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in
 
 **Step 1 & 2: Get Info_data: (columns 'id', 'url', 'text')**
 
-For running it with a dummy, use the file "query_out_dummy". (When using all of DBpedia, we query over the entire dataset with SPARQL. See #Running system with entire DBpedia below.)
+# Running system with entire DBpedia
+
+Load data and set up querying steps
+
+```
+cd entity_knowledge_in_bert/java_code
+mkdir input_files
+cd input_files
+wget --> http://downloads.dbpedia.org/2016-10/core-i18n/en/long_abstracts_en.ttl.bz2 http://downloads.dbpedia.org/2016-10/core-i18n/en/page_ids_en.ttl.bz2
+bzip2 -d --> http://downloads.dbpedia.org/2016-10/core-i18n/en/long_abstracts_en.ttl.bz2 http://downloads.dbpedia.org/2016-10/core-i18n/en/page_ids_en.ttl.bz2
+cd ..
+
+mkdir query_in
+mv query.txt query_in
+
+```
+
+Load data into the triple database and execute queries
+
+```
+cd ..
+mkdir query_out
+java - jar neuralbert_load_data.jar
+java -jar neuralbert_execute_queries.jar
+
+mv query_out/query_out ../bert_entity/preprocessing
+cd ../bert_entity/preprocessing
+
+```
+
+Extract info data from query and put in csv shape with columns 'id', 'title', 'text'
+
+
+```
+python3 get_raw_info_data_from_query.py
+```
+
+_Only_dummy_
 
 ```
 python3 get_raw_info_data_from_query_dummy.py
@@ -65,6 +102,8 @@ bzip2 -d page_links_en.ttl.bz2
 ```
 Extract the url's and internal links from ttl file and put in csv shape with columns 'id' 'internal_links'
 
+_Only_dummy_
+
 ```
 python3 get_links_data_from_ttl_links_file_dummy.py
 ```
@@ -72,6 +111,8 @@ python3 get_links_data_from_ttl_links_file_dummy.py
 **Step 4: Shape data and merge info and internal_links**
 
 run shape_data.py
+
+_Only_dummy_
 
 ```
 python3 shape_data.py
@@ -132,43 +173,6 @@ python3 bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml
 ```
 python3 bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml --eval_on_test_only True --resume_from_checkpoint data/checkpoints/dummy_aidaconll_00001/best_f1-0.pt
 ```
-
-# Running system with entire DBpedia
-
-Load data and set up querying steps
-
-```
-cd entity_knowledge_in_bert/java_code
-mkdir input_files
-cd input_files
-wget --> http://downloads.dbpedia.org/2016-10/core-i18n/en/long_abstracts_en.ttl.bz2 http://downloads.dbpedia.org/2016-10/core-i18n/en/page_ids_en.ttl.bz2
-bzip2 -d --> http://downloads.dbpedia.org/2016-10/core-i18n/en/long_abstracts_en.ttl.bz2 http://downloads.dbpedia.org/2016-10/core-i18n/en/page_ids_en.ttl.bz2
-cd ..
-
-mkdir query_in
-mv query.txt query_in
-
-```
-
-Load data into the triple database and execute queries
-
-```
-cd ..
-mkdir query_out
-java - jar neuralbert_load_data.jar
-java -jar neuralbert_execute_queries.jar
-
-mv query_out/query_out ../bert_entity/preprocessing
-cd ../bert_entity/preprocessing
-
-```
-
-Extract info data from query and put in csv shape with columns 'id', 'title', 'text'
-
-```
-python3 get_raw_info_data_from_query.py
-```
-
 
 
 # Explenation of preprocessing tasks
