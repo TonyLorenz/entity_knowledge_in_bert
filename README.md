@@ -108,7 +108,7 @@ python3 get_links_data_from_ttl_links_file_dummy.py
 
 **Step 4: Shape data and merge info and internal_links**
 
-run shape_data.py
+run shape_data_dummy.py
 
 _Only_dummy_
 
