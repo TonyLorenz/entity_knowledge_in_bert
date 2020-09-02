@@ -6,9 +6,9 @@ import sys
 import json
 import re
 
-    """
-    Concatenates data_info and data_links.
-    """
+
+#Concatenates data_info and data_links.
+
   
 data_info = pd.read_csv("data_info.csv", names= ['text', 'id', 'url'])
 #data_info = data_info.head(x)
@@ -30,9 +30,9 @@ while j< len(data_info['id']):
 data_info['title'] = names
 
 
-    """
-    Because some of the titles were numbers, the following preprocessing steps couldn't work with those articles. We filter them out here.
-    """
+
+# Because some of the titles were numbers, the following preprocessing steps couldn't work with those articles. We filter them out here.
+
     
 i = 0
 for item in data_info["title"]:
@@ -54,9 +54,8 @@ data_links = pd.read_csv('data_links.csv')
 print(data_links)
 
 
-    """
-    Merge all internal links for each respective article in a list.
-    """
+# Merge all internal links for each respective article in a list.
+
   
 sorted_links = []
 sorted_urls= []
@@ -87,9 +86,9 @@ data_links_dict = dict(zip(data_links['url'], data_links['internal_links']))
 print(data_links_dict)
 
 
-    """
-    If internal links found for a datapoint in data_info: append the list, otherwise append an empty list.
-    """
+
+# If internal links found for a datapoint in data_info: append the list, otherwise append an empty list.
+
   
 found_url_list = []
 h = 0
