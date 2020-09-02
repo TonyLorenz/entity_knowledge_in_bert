@@ -37,9 +37,12 @@ This is what steps we took in downloading and preparing the data:
 5. Find internal links in abstracts of each respective article to create mentions and put data in exact shape that the Wikiextractor outputs with *dbpedia_extractor.py*
 6. Attach data to the rest of the code with *load_dbpedia_data.py*
 
-_Only_dummy_ --> we only run it with a dummy here because we set up the pipeline like this, to run over entire DBPedia data, we need to split the data
 
 # Setup
+
+_Only_dummy_ --> Use these commands if you only want to run it with the dummy and not all of DBpedia.
+
+_all_of_DBpedia_ --> Run it with all of DBpedia, takes very long.
 
 ```
 git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in_bert.git
@@ -49,7 +52,7 @@ git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in
 
 # Running system with entire DBpedia
 
-Load data and set up querying steps
+Load data and set up querying steps: Setup NeuralELwBERT Folder and name it java_code (Contributed by supervisor)
 
 ```
 cd entity_knowledge_in_bert/java_code
@@ -68,7 +71,7 @@ Load data into the triple database and execute queries
 ```
 cd ..
 mkdir query_out
-java - jar neuralbert_load_data.jar
+java -jar neuralbert_load_data.jar
 java -jar neuralbert_execute_queries.jar
 
 mv query_out/query_out ../bert_entity/preprocessing
@@ -76,17 +79,18 @@ mv query_out/query_out ../bert_entity/preprocessing
 
 Extract info data from query and put in csv shape with columns 'id', 'title', 'text'
 
-
-```
-cd ../bert_entity/preprocessing
-python3 get_raw_info_data_from_query.py
-```
-
 _Only_dummy_
 
 ```
 cd ../bert_entity/preprocessing
 python3 get_raw_info_data_from_query_dummy.py
+```
+
+_all_of_DBpedia_
+
+```
+cd ../bert_entity/preprocessing
+python3 get_raw_info_data_from_query.py
 ```
 
 **Step 1 & 3: Get Internal_links_data (columns 'id', 'internal_links')**
@@ -106,6 +110,12 @@ _Only_dummy_
 python3 get_links_data_from_ttl_links_file_dummy.py
 ```
 
+_all_of_DBpedia_
+
+```
+python3 get_links_data_from_ttl_links_file.py
+```
+
 **Step 4: Shape data and merge info and internal_links**
 
 run shape_data_dummy.py
@@ -115,8 +125,14 @@ _Only_dummy_
 ```
 python3 shape_data_dummy.py
 ```
---> now you have a dbpedia_data.csv file with columns 'id', 'url', 'title', 'text', 'internal_links'
 
+_all_of_DBpedia_
+
+```
+python3 shape_data.py
+```
+
+--> now you have a dbpedia_data.csv file (or in case you run it with all of DBpedia, multiple dbpedia_data{num}.csv files) with columns 'id', 'url', 'title', 'text', 'internal_links'
 --> Step 5 & 6 are integrated in the preprocessing of the orignal code
 
 
@@ -152,10 +168,17 @@ cd ../../../
 
 
 **Run preprocessing**
-```
-python3 bert_entity/preprocess_all.py --create_integerized_training_valid_size 20 --create_integerized_training_test_size 20 -c config/dummy__preprocess.yaml
 
+_Only_dummy_
 ```
+python3 bert_entity/preprocess_all.py --create_integerized_training_valid_size 100 --create_integerized_training_test_size 100 -c config/dummy__preprocess.yaml
+```
+
+_all_of_DBpedia_
+```
+python3 bert_entity/preprocess_all.py --create_integerized_training_valid_size 1000 --create_integerized_training_test_size 1000 -c config/dummy__preprocess.yaml
+```
+
 **Run training on DBPedia dummy**
 ```
 python3 bert_entity/train.py -c config/dummy__train_on_wiki.yaml
@@ -171,6 +194,7 @@ python3 bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml
 ```
 python3 bert_entity/train.py -c config/dummy__train_on_aida_conll.yaml --eval_on_test_only True --resume_from_checkpoint data/checkpoints/dummy_aidaconll_00001/best_f1-0.pt
 ```
+
 
 
 # Explenation of preprocessing tasks
