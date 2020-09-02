@@ -61,7 +61,6 @@ cd ..
 
 mkdir query_in
 mv query.txt query_in
-
 ```
 
 Load data into the triple database and execute queries
@@ -73,7 +72,6 @@ java - jar neuralbert_load_data.jar
 java -jar neuralbert_execute_queries.jar
 
 mv query_out/query_out ../bert_entity/preprocessing
-
 ```
 
 Extract info data from query and put in csv shape with columns 'id', 'title', 'text'
@@ -99,7 +97,6 @@ Download dbpedia data with page links
 ```
 wget http://downloads.dbpedia.org/2016-10/core-i18n/en/page_links_en.ttl.bz2
 bzip2 -d page_links_en.ttl.bz2
-
 ```
 Extract the url's and internal links from ttl file and put in csv shape with columns 'id' 'internal_links'
 
