@@ -37,10 +37,15 @@ class Wikiextractor(PipelineJob):
         counter = 1
 
         # python wikiextractor-wikimentions/WikiExtractor.py --json --filter_disambig_pages --processes $WIKI_EXTRACTOR_NR_PROCESSES --collect_links $DOWNLOADS_DIR/$WIKI_RAW/$WIKI_FILE -o $WIKI_EXTRACTOR_OUTDIR/$WIKI_FILE
-
+    
         for input_file in glob.glob(
             f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/*"
         ):
+                  
+    """
+    Find the internal links in abstract of each respective article. Remove "uri-structure", "_" and other chars that are
+    not part of the words that can be found in the abstracts before. Then encode it with pickle to put it in right shape.
+    """
               data = pd.read_csv(input_file)
               data = data.to_dict(orient = 'records')
               #  print(data)
