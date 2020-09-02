@@ -47,38 +47,10 @@ git clone --recurse-submodules https://github.com/TonyLorenz/entity_knowledge_in
 
 **Step 1 & 2: Get Info_data: (columns 'id', 'url', 'text')**
 
-Load data and set up querying steps
+For running it with a dummy, use the file "query_out_dummy". (When using all of DBpedia, we query over the entire dataset with SPARQL. See #Running system with entire DBpedia below.)
 
 ```
-cd entity_knowledge_in_bert/java_code
-mkdir input_files
-cd input_files
-wget --> http://downloads.dbpedia.org/2016-10/core-i18n/en/long_abstracts_en.ttl.bz2 http://downloads.dbpedia.org/2016-10/core-i18n/en/page_ids_en.ttl.bz2
-bzip2 -d --> http://downloads.dbpedia.org/2016-10/core-i18n/en/long_abstracts_en.ttl.bz2 http://downloads.dbpedia.org/2016-10/core-i18n/en/page_ids_en.ttl.bz2
-cd ..
-
-mkdir query_in
-mv query.txt query_in
-
-```
-
-Load data into the triple database and execute queries
-
-```
-cd ..
-mkdir query_out
-java - jar neuralbert_load_data.jar
-java -jar neuralbert_execute_queries.jar
-
-mv query_out/query_out ../bert_entity/preprocessing
-cd ../bert_entity/preprocessing
-
-```
-
-Extract info data from query and put in csv shape with columns 'id', 'title', 'text'
-
-```
-python3 get_raw_info_data_from_query.py
+python3 get_raw_info_data_from_query_dummy.py
 ```
 
 **Step 1 & 3: Get Internal_links_data (columns 'id', 'internal_links')**
@@ -189,6 +161,12 @@ java -jar neuralbert_execute_queries.jar
 mv query_out/query_out ../bert_entity/preprocessing
 cd ../bert_entity/preprocessing
 
+```
+
+Extract info data from query and put in csv shape with columns 'id', 'title', 'text'
+
+```
+python3 get_raw_info_data_from_query.py
 ```
 
 
