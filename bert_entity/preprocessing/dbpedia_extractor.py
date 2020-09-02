@@ -42,10 +42,10 @@ class Wikiextractor(PipelineJob):
             f"data/versions/{self.opts.data_version_name}/downloads/{self.opts.wiki_lang_version}/*"
         ):
                   
-    """
-    Find the internal links in abstract of each respective article. Remove "uri-structure", "_" and other chars that are
-    not part of the words that can be found in the abstracts before. Then encode it with pickle to put it in right shape.
-    """
+
+ #   Find the internal links in abstract of each respective article. Remove "uri-structure", "_" and other chars that are
+ #   not part of the words that can be found in the abstracts before. Then encode it with pickle to put it in right shape.
+
               data = pd.read_csv(input_file)
               data = data.to_dict(orient = 'records')
               #  print(data)
