@@ -113,7 +113,7 @@ run shape_data_dummy.py
 _Only_dummy_
 
 ```
-python3 shape_data.py
+python3 shape_data_dummy.py
 ```
 --> now you have a dbpedia_data.csv file with columns 'id', 'url', 'title', 'text', 'internal_links'
 
