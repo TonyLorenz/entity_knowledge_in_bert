@@ -73,7 +73,6 @@ java - jar neuralbert_load_data.jar
 java -jar neuralbert_execute_queries.jar
 
 mv query_out/query_out ../bert_entity/preprocessing
-cd ../bert_entity/preprocessing
 
 ```
 
@@ -81,12 +80,14 @@ Extract info data from query and put in csv shape with columns 'id', 'title', 't
 
 
 ```
+cd ../bert_entity/preprocessing
 python3 get_raw_info_data_from_query.py
 ```
 
 _Only_dummy_
 
 ```
+cd ../bert_entity/preprocessing
 python3 get_raw_info_data_from_query_dummy.py
 ```
 
