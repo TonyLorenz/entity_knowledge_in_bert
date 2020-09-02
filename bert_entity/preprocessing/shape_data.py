@@ -12,8 +12,8 @@ data_info = data_info_all
 #print(data_info)
 #print(data_info['url'])
 
-#data_links_list = os.listdir(path='../data_links')
-data_links_list = ['data_links8.csv', 'data_links9.csv']
+data_links_list = os.listdir(path='data_links')
+#data_links_list = ['data_links8.csv', 'data_links9.csv']
 new_df = pd.DataFrame(columns= ['text', 'id', 'url', 'title', 'internal_links'])
 
 
