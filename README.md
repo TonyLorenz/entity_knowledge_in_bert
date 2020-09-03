@@ -191,7 +191,7 @@ cd ../../../
 
 _Only_dummy_
 ```
-python3 bert_entity/preprocess_all.py --create_integerized_training_valid_size 300 --create_integerized_training_test_size 300 -c config/dummy__preprocess.yaml
+python3 bert_entity/preprocess_all.py --create_integerized_training_valid_size 150 --create_integerized_training_test_size 150 -c config/dummy__preprocess.yaml
 ```
 
 _all_of_DBpedia_
