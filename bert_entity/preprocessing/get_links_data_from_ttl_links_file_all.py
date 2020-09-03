@@ -1,6 +1,8 @@
 import re
 import pandas as pd
 
+# We run the same as for the dummy but we split it 200 times because the process gets killed otherwise.
+
 fp = open('page_links_en.ttl', 'r')
 #print("fp = open('page_links_en.ttl', 'r') done")
 
