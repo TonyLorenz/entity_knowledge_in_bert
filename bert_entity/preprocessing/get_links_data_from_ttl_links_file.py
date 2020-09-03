@@ -21,6 +21,12 @@ while cnt<20008:
     line = fp.readline()
     print("cnt 8")
     cnt+=1
+   else:
+    links.append(line)
+    #print("links.append(line) done")
+    line = fp.readline()
+    #print("line = fp.readline() done")
+    cnt += 1
     
 print("while done")
 links_df = pd.DataFrame(links, columns=['internal_links'])
