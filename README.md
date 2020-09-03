@@ -156,7 +156,7 @@ python3 shape_data.py
 --> Step 5 & 6 are integrated in the preprocessing of the orignal code
 
 
-**Prepare running of original code**
+# Prepare running of original code
 
 Prepare files
 
