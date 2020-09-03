@@ -13,8 +13,11 @@ Altered files:
 Added files
 
 - get_links_data_from_ttl_links_file.py
+- get_links_data_from_ttl_links_file_dummy.py
 - get_raw_info_data_from_query.py
+- get_raw_info_data_from_query_dummy.py
 - shape_data.py
+- shape_data_dummy.py
 - load_dbpedia_data.py
 - dbpedia_extractor.py
 
