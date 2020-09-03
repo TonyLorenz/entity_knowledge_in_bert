@@ -64,7 +64,7 @@ while k<len(data_links['url']):
   current_url_list = []
   current_url = data_links['url'][k]
   while data_links['url'][k] == current_url:
-    current_url_list.append(data_links['links'][k])
+    current_url_list.append(data_links['internal_links'][k])
     k+=1
     if k > len(data_links['url'])-1:
       break
