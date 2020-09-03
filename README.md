@@ -142,7 +142,7 @@ python3 shape_data.py
 Prepare files
 
 ```
-cd entity_knowledge_in_bert
+cd ../..
 # git install requirements.txt
 git submodule update --init
 # Add paths to environment
