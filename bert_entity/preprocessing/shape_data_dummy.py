@@ -15,7 +15,7 @@ data_info = pd.read_csv("data_info.csv", names= ['text', 'id', 'url'])
 print(data_info)
 i =0
 while i< len(data_info['id']):
-  item = str(data_info['id'])
+  item = str(data_info['id'][i])
   item = re.sub("\^\^http://www.w3.org/2001/XMLSchema#integer", "", item)
   data_info['id'][i] = item
   i+=1
