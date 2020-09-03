@@ -7,7 +7,7 @@ import random
 
   
 data = pd.read_csv("query_out")
-data = data.head(1000000)
+data = data.head(700000)
 
 
 data.to_csv("data_info.csv", index= False, header= True)
