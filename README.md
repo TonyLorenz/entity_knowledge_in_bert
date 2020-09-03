@@ -66,6 +66,18 @@ mkdir query_in
 mv query.txt query_in
 ```
 
+Make sure this query is in the "query_in" folder:
+
+```
+  
+SELECT DISTINCT ?url ?id ?abstract
+WHERE {
+?url <http://dbpedia.org/ontology/wikiPageID> ?id .
+?url <http://dbpedia.org/ontology/abstract> ?abstract  .
+
+}
+```
+
 Load data into the triple database and execute queries
 
 ```
@@ -76,6 +88,7 @@ java -jar neuralbert_execute_queries.jar
 
 mv query_out/query_out ../bert_entity/preprocessing
 ```
+--> make sure your queried data file called "query_out" is in bert_entity/preprocessing
 
 Extract info data from query and put in csv shape with columns 'id', 'title', 'text'
 
@@ -102,6 +115,9 @@ Download dbpedia data with page links
 wget http://downloads.dbpedia.org/2016-10/core-i18n/en/page_links_en.ttl.bz2
 bzip2 -d page_links_en.ttl.bz2
 ```
+
+--> make sure the TTL data file called "page_links_en.ttl" is in bert_entity/preprocessing
+
 Extract the url's and internal links from ttl file and put in csv shape with columns 'id' 'internal_links'
 
 _Only_dummy_
