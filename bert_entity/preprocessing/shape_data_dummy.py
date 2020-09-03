@@ -99,7 +99,7 @@ for item in data_info['url']:
     found_url_list.append([])
 
 data_info['internal_links'] = found_url_list
-
+data_info = data_info[['id', 'url', 'title', 'text', 'internal_links']]
 print(data_info)
 
 data_info.to_csv("dbpedia_data.csv", index= False, header= True)
