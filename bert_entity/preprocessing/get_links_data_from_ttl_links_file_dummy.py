@@ -16,7 +16,7 @@ print("cnt = 0 done")
 #url = []
 links = []
 
-while cnt<5000008:
+while cnt<1000008:
   if cnt<8:
     line = fp.readline()
     print("cnt 8")
