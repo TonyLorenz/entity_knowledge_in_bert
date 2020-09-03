@@ -3,11 +3,7 @@ import pandas as pd
 
 fp = open('page_links_en.ttl', 'r')
 #print("fp = open('page_links_en.ttl', 'r') done")
-j= 0
-while j < 3672112:
- fp.readline()
- j+=1
-print("tail done!")
+
 line = fp.readline()
 #print("line = fp.readline() done")
 
